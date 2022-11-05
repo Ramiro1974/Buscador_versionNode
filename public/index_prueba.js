@@ -1,8 +1,8 @@
 //alert("estoy funcionando");
 console.log('estoy funcionando');
 
-document.querySelector('#boton').addEventListener('click', trardatos()); //ejecuta todo
-//document.querySelector('#boton').addEventListener('click', trardatos); //AQui solo esta ejecuntando el botón
+//document.querySelector('#boton').addEventListener('click', trardatos()); //ejecuta todo
+document.querySelector('#boton').addEventListener('click', trardatos); //AQui solo esta ejecuntando el botón
 
 function trardatos() {
     console.log('dentro de la función');
@@ -23,14 +23,13 @@ function trardatos() {
             for (let contador of datos) {
                 //console.log(contador.Direccion);
                 //res.innerHTML += `<li><a href="#"> ${contador.Direccion}</a></li>`; no usar comillas simples usar esta (`)
-                res.innerHTML += `
+                res.innerHTML += `                
 					<tr> 
 						<td> ${contador.Id}</td>
 						<td>${contador.Direccion}</td > 
 						<td > ${ contador.Ciudad} </td> 
 						<td >${contador.Telefono}</td > 
-						<td> ${ contador.Codigo_Postal}
-						</td> 
+						<td> ${ contador.Codigo_Postal}</td> 
 						<td> ${contador.Tipo}</td > 
 						<td> ${contador.Precio}</td> 
 					</tr>`
