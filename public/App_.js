@@ -11,47 +11,57 @@ function traerdatos() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let datos = JSON.parse(this.responseText);
-            console.log(datos);
+            //console.log(datos);
             let res = document.querySelector('#res');
             res.innerHTML = ''; //aqui se esta limpiado todo
+            let Bciudad, Bciudad2, Bciudad3, Nciudad = [''];
 
             for (let contador of datos) {
                 res.innerHTML += `
-                <div class="card-image">
-                <img src="img/home.jpg">
-            </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <div>
-                        <b>Direccion: ${contador.Direccion}</b>
-                        <p></p>
+                <div class="card horizontal">
+                        <div class="card-image">
+                        <img src="img/home.jpg">
+                        </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <div>
+                                <b>Direccion: ${contador.Direccion}</b>
+                                <p></p>
+                            </div>
+                            <div>
+                                <b>Ciudad: ${contador.Ciudad}</b>
+                                <p></p>
+                            </div>
+                            <div>
+                                <b>Telefono: ${contador.Telefono}</b>
+                                <p></p>
+                            </div>
+                            <div>
+                                <b>Código postal: ${contador.Codigo_Postal} </b>
+                                <p></p>
+                            </div>
+                            <div>
+                                <b>Precio: ${contador.Precio} </b>
+                                <p></p>
+                            </div>
+                            <div>
+                                <b>Tipo: ${contador.Tipo}</b>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="card-action right-align">
+                            <a href="#">Ver más</a>
+                        </div>
                     </div>
-                    <div>
-                        <b>Ciudad: ${contador.Ciudad}</b>
-                        <p></p>
-                    </div>
-                    <div>
-                        <b>Telefono: ${contador.Telefono}</b>
-                        <p></p>
-                    </div>
-                    <div>
-                        <b>Código postal: ${contador.Codigo_Postal} </b>
-                        <p></p>
-                    </div>
-                    <div>
-                        <b>Precio: ${contador.Precio} </b>
-                        <p></p>
-                    </div>
-                    <div>
-                        <b>Tipo: ${contador.Tipo}</b>
-                        <p></p>
-                    </div>
-                </div>
-                <div class="card-action right-align">
-                    <a href="#">Ver más</a>
-                </div>`
+                </div>`;
+
+
             }
+
+
         }
+
+
 
     }
 }
