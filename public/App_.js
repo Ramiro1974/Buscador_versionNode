@@ -58,6 +58,14 @@ function traerdatos() {
 
             }
 
+            //trae la ciudad seleccionada;
+
+            let resultado = "New York";
+            const Ciudades = datos.filter(function(c) {
+                return (c.Ciudad === resultado);
+            });
+            console.log(Ciudades);
+
 
         }
 
