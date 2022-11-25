@@ -14,7 +14,8 @@ function traerdatos() {
             //console.log(datos);
             let res = document.querySelector('#res');
             res.innerHTML = ''; //aqui se esta limpiado todo
-            let Bciudad, Bciudad2, Bciudad3, Nciudad = [''];
+            let Bciudad, Nciudad = [''],
+                uniqueCiudad = [];
 
             for (let contador of datos) {
                 res.innerHTML += `
@@ -55,8 +56,23 @@ function traerdatos() {
                     </div>
                 </div>`;
 
+                Nciudad.push(contador.Ciudad);
 
             }
+
+
+
+
+            //sacar ciudades repetidas
+
+
+            Nciudad.forEach(function(item) {
+                if (!uniqueCiudad.includes(item)) {
+                    uniqueCiudad.push(item);
+                }
+            });
+            console.log(uniqueCiudad);
+
 
             //trae la ciudad seleccionada;
 
@@ -64,7 +80,7 @@ function traerdatos() {
             const Ciudades = datos.filter(function(c) {
                 return (c.Ciudad === resultado);
             });
-            console.log(Ciudades);
+            //console.log(Ciudades);
 
 
         }
