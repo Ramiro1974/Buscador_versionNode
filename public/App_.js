@@ -36,7 +36,7 @@ function traerdatos() {
                     uniqueCiudad.push(item);
                 }
             });
-            console.log(uniqueCiudad);
+            //console.log(uniqueCiudad);
 
             //sacar ciudades Tipos
 
@@ -45,16 +45,16 @@ function traerdatos() {
                     uniqueTipo.push(item);
                 }
             });
-            console.log(uniqueTipo);
+            //console.log(uniqueTipo);
 
             $(document).ready(function() {
                 $('select').material_select();
             });
-            console.log("en la funcion select");
+            //console.log("en la funcion select");
             let ciudadS = document.querySelector('#ciudad');
 
             uniqueCiudad.forEach(function(numero) {
-                console.log(numero);
+                //console.log(numero);
                 ciudadS.innerHTML += `
                    
                         <option value = "${numero}" >${numero}</option>
@@ -62,11 +62,11 @@ function traerdatos() {
                  `
             });
 
-            console.log("en la funcion select");
+            //console.log("en la funcion select");
             let tipoS = document.querySelector('#tipo');
 
             uniqueTipo.forEach(function(numero) {
-                console.log(numero);
+                //console.log(numero);
                 tipoS.innerHTML += `
                    
                         <option value = "${numero}" >${numero}</option>
@@ -141,6 +141,17 @@ function tarerCiudades() {
     let tiposSelect = document.getElementById('tipo');
     let tipoSelect = tiposSelect.value;
     //alert(tipoSelect + ' y ' + ciudadSelect);
+
+    let ciudadesPrecios = document.getElementById('rangoPrecio');
+    let ciudadesPrecio = ciudadesPrecios.value;
+    let rango = ciudadesPrecio.split(';');
+    let base = rango[0],
+        limite = rango[1];
+
+
+    console.log(base + '  y  ' + limite + ' y rango es: ' + rango);
+
+    //1000;100000
 
     //busqueda por ciudades
 
