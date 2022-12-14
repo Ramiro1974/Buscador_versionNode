@@ -55,11 +55,7 @@ function traerdatos() {
 
             uniqueCiudad.forEach(function(numero) {
                 //console.log(numero);
-                ciudadS.innerHTML += `
-                   
-                        <option value = "${numero}" >${numero}</option>
-                   
-                 `
+                ciudadS.innerHTML += `<option value = "${numero}" >${numero}</option>`;
             });
 
             //console.log("en la funcion select");
@@ -67,11 +63,7 @@ function traerdatos() {
 
             uniqueTipo.forEach(function(numero) {
                 //console.log(numero);
-                tipoS.innerHTML += `
-                   
-                        <option value = "${numero}" >${numero}</option>
-                   
-                 `
+                tipoS.innerHTML += `<option value = "${numero}" >${numero}</option>`;
             });
 
 
@@ -147,9 +139,12 @@ function tarerCiudades() {
     let rango = ciudadesPrecio.split(';');
     let base = rango[0],
         limite = rango[1];
-
-
-    console.log(base + '  y  ' + limite + ' y rango es: ' + rango);
+    let preciosCiudades = [''];
+    console.log('es la base' +
+        base + 'y  :' +
+        typeof(base) + 'rango es: ' + rango);
+    console.log('limite');
+    console.log(limite);
 
     //1000;100000
 
@@ -192,13 +187,47 @@ function tarerCiudades() {
         busquedaCiudadesResultado(Tipos);
     }
 
+
+
+    //trae las ciudades con precios 
+    if (tipoSelect === '' && ciudadSelect === '' && limite !== '') {
+        preciosCiudades = [];
+        for (let contador of datos) {
+
+            busquedaNumero = conversioAnumero(contador.Precio);
+
+            //console.log(busquedaNumero);
+
+            if (busquedaNumero >= limite) {
+
+                let precioEncontrado = contador.Precio;
+
+                let resultado2 = precioEncontrado;
+                const Precios = datos.filter(function(c) {
+                    return (c.Precio === resultado2);
+                });
+
+                preciosCiudades.push(Precios);
+
+            }
+
+        }
+
+        console.log(preciosCiudades);
+        busquedaCiudadesResultado(preciosCiudades);
+    }
     // trae todos las ciudades y tipos
 
-    if (tipoSelect === '' && ciudadSelect === '') {
+    if (tipoSelect === '' && ciudadSelect === '' && preciosCiudades[0] === '') {
         busquedaCiudadesResultado(datos);
     }
 
 
-
+    function conversioAnumero(precioEnviado) {
+        let numeros = precioEnviado.replace("$", "");
+        let numero = numeros.replace(",", "");
+        //console.log(parseInt(numero));
+        return parseInt(numero);
+    }
 
 }
