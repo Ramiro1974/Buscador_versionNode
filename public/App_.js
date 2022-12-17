@@ -140,12 +140,10 @@ function tarerCiudades() {
     let base = rango[0],
         limite = rango[1];
     let preciosCiudades = [];
-    console.log('es: ' + typeof(ciudadesPrecio) + 'valor:' + ciudadSelect);
-    console.log('es la base' +
-        base + 'y  :' +
-        typeof(base) + 'rango es: ' + rango);
-    console.log('limite');
-    console.log(limite);
+    //console.log('es: ' + typeof(ciudadesPrecio) + 'valor:' + ciudadSelect);
+    //console.log('es la base' +base + 'y  :' +typeof(base) + 'rango es: ' + rango);
+    //console.log('limite');
+    //console.log(limite);
 
     //1000;100000
 
@@ -171,10 +169,10 @@ function tarerCiudades() {
             return (c.Tipo === resultado2);
         });
 
-        let resulPrecioCiudTipo = traerPrecios(Tipos);
+        let resulPrecioCiudTipo1 = traerPrecios(Tipos);
 
 
-        busquedaCiudadesResultado(resulPrecioCiudTipo);
+        busquedaCiudadesResultado(resulPrecioCiudTipo1);
     }
 
     //busqueda por ciudades y tipos
@@ -191,28 +189,41 @@ function tarerCiudades() {
             return (c.Tipo === resultado2);
         });
 
-        let resulPrecioCiudTipo = traerPrecios(Tipos);
+        let resulPrecioCiudTipo2 = traerPrecios(Tipos);
 
 
-        busquedaCiudadesResultado(resulPrecioCiudTipo);
+        busquedaCiudadesResultado(resulPrecioCiudTipo2);
     }
 
 
 
     //trae las ciudades con precios 
-    if (tipoSelect === '' && ciudadSelect === '' && limite !== '') {
-        traerPrecios(datos);
+    if (tipoSelect === '' && ciudadSelect === '' && limite !== undefined) {
+
+        let resulPrecioCiudTipo3 = traerPrecios(datos);
+
+        busquedaCiudadesResultado(resulPrecioCiudTipo3);
 
     }
 
 
 
     // trae todos
-    if (tipoSelect === '' && ciudadSelect === '' && ciudadesPrecio === '') {
+    if (tipoSelect === '' && ciudadSelect === '' && limite === undefined) {
         busquedaCiudadesResultado(datos);
     }
 
+    //busqueda de las ciudades
+
     function traerPrecios(objPrecios) {
+
+        function conversioAnumero(precioEnviado) {
+            let numeros = precioEnviado.replace("$", "");
+            let numero = numeros.replace(",", "");
+            //console.log(parseInt(numero));
+            return parseInt(numero);
+        }
+
 
         let datosEntrados = new Object();
 
@@ -220,13 +231,19 @@ function tarerCiudades() {
 
             busquedaNumero = conversioAnumero(contador.Precio);
 
+
             //console.log(busquedaNumero);
 
-            if (busquedaNumero >= limite) {
+            if (base <= busquedaNumero && busquedaNumero >= limite) {
 
                 let precioEncontrado = contador.Precio;
 
+                //console.log(precioEncontrado);
+
+
                 let resultado2 = precioEncontrado;
+
+
                 const Precios = objPrecios.filter(function(c) {
                     return (c.Precio === resultado2);
                 });
@@ -239,7 +256,7 @@ function tarerCiudades() {
                     datosEntrados.Codigo_Postal = contador.Codigo_Postal;
                     datosEntrados.Tipo = contador.Tipo;
                     datosEntrados.Precio = contador.Precio;
-
+                    console.log(contador.Precio);
                 }
 
                 preciosCiudades.push(datosEntrados);
@@ -247,15 +264,8 @@ function tarerCiudades() {
 
         }
 
-        console.log(preciosCiudades);
+        //console.log(preciosCiudades);
         return preciosCiudades;
-    }
-
-    function conversioAnumero(precioEnviado) {
-        let numeros = precioEnviado.replace("$", "");
-        let numero = numeros.replace(",", "");
-        //console.log(parseInt(numero));
-        return parseInt(numero);
     }
 
 }
